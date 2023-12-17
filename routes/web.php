@@ -9,6 +9,7 @@ use App\Http\Controllers\Order\OrderCompleteController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Order\OrderPendingController;
 use App\Http\Controllers\PosController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Product\ProductExportController;
 use App\Http\Controllers\Product\ProductImportController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Quotation\QuotationController;
 use App\Http\Controllers\BarangKeluarController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,17 +33,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('php/', function () {
-    return phpinfo();
-});
-
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.app.home');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::post('/', [HomeController::class, 'store']);
 
-    Route::get('dashboard/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/tentang', function () {
+    return view('home.app.about');
+});
+
+Route::get('/produk', [ProdukController::class, 'show']);
+Route::get('/produk/{slug}', [ProdukController::class, 'detail']);
+
+// Route::get('/produk/detail', function () {
+//     return view('home.app.product_detail');
+// });
+
+Route::get('/artikel', function () {
+    return view('home.app.article');
+});
+Route::get('/artikel/detail', function () {
+    return view('home.app.article_detail');
+});
+
+
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () {
+
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // User Management
     Route::resource('/users', UserController::class); //->except(['show']);
