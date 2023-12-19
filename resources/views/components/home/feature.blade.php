@@ -1,5 +1,4 @@
 @php
-@php
 $data1 = array(
     'title' => 'Jual Beli',
     'description' => 'Transaksi jual-beli dapat dilakukan kapanpun',
