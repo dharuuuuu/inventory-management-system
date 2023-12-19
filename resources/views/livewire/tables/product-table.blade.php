@@ -7,6 +7,7 @@
         </div>
 
         <div class="card-actions">
+            <x-action.close route="{{ route('PDFproduct') }}" />
             <x-action.create route="{{ route('products.create') }}" />
         </div>
     </div>

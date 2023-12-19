@@ -32,7 +32,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     return view('home.app.home');
 });
@@ -73,7 +72,9 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
 
     Route::resource('/quotations', QuotationController::class);
     Route::resource('/barang_masuk', BarangMasukController::class);
+    Route::get('/PDFbarang_masuk', 'App\Http\Controllers\PDFController@PDFbarang_masuk')->name('PDFbarang_masuk');
     Route::resource('/barang_keluar', BarangKeluarController::class);
+    Route::get('/PDFbarang_keluar', 'App\Http\Controllers\PDFController@PDFbarang_keluar')->name('PDFbarang_keluar');
     Route::resource('/categories', CategoryController::class);
     Route::resource('/units', UnitController::class);
 
@@ -82,6 +83,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::post('products/import/', [ProductImportController::class, 'store'])->name('products.import.store');
     Route::get('products/export/', [ProductExportController::class, 'create'])->name('products.export.store');
     Route::resource('/products', ProductController::class);
+    Route::get('/PDFproduct', 'App\Http\Controllers\PDFController@PDFproduct')->name('PDFproduct');
 
     // Route POS
     Route::get('/pos', [PosController::class, 'index'])->name('pos.index');
