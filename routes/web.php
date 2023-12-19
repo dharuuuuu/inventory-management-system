@@ -11,8 +11,8 @@ use App\Http\Controllers\Order\OrderPendingController;
 use App\Http\Controllers\PosController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\Product\ProductController;
-use App\Http\Controllers\Product\ProductExportController;
-use App\Http\Controllers\Product\ProductImportController;
+// use App\Http\Controllers\Product\ProductExportController;
+// use App\Http\Controllers\Product\ProductImportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Purchase\PurchaseController;
 use App\Http\Controllers\Quotation\QuotationController;
@@ -79,9 +79,9 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::resource('/units', UnitController::class);
 
     // Route Products
-    Route::get('products/import/', [ProductImportController::class, 'create'])->name('products.import.view');
-    Route::post('products/import/', [ProductImportController::class, 'store'])->name('products.import.store');
-    Route::get('products/export/', [ProductExportController::class, 'create'])->name('products.export.store');
+    // Route::get('products/import/', [ProductImportController::class, 'create'])->name('products.import.view');
+    // Route::post('products/import/', [ProductImportController::class, 'store'])->name('products.import.store');
+    // Route::get('products/export/', [ProductExportController::class, 'create'])->name('products.export.store');
     Route::resource('/products', ProductController::class);
     Route::get('/PDFproduct', 'App\Http\Controllers\PDFController@PDFproduct')->name('PDFproduct');
 
